@@ -1,7 +1,7 @@
 # online IDE
 
     This IDE Would work in any linux distribution.Due to cool features
-    of linux building this is fairly easy you just need to familar with
+    of linux deploying this is fairly easy you just need to familar with
     basic linux commands. for text editor i have used ace editor library.
     This IDE support almost all frequently used  programming language.
     if you want to add any language that is not present in this code
