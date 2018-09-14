@@ -11,4 +11,4 @@
     change compile command and run command and file extension inside 
      that file.
 
-   ![Alt text](c.png?raw=true "UI")
+   ![Alt text](compiler.gif?raw=true "UI")
