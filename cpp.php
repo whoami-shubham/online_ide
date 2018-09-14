@@ -15,13 +15,25 @@ function cpp_compiler(){
 
 				 			$input = $_POST['in'];
 				   }
-				$main = "main.cpp";
-				$error_file = "error.txt";
-				$command = "g++ --std=c++11 -lm $main -w 2> ".$error_file;
-				$run = "timeout 5s ./a.out";
-				$file_to_run = fopen($main, "w+");
-				fwrite( $file_to_run, $code );
-				fclose( $file_to_run );
+				   $main = "main.cpp";
+				   $c = "code.cpp";
+				   $error_file = "error.txt";
+				   $command = "g++  $main -std=c++11 -lm -w 2> ".$error_file;
+				   $run = "timeout 5s ./a.out";
+				   $file_to_save = fopen($c, "w+");
+				   fwrite( $file_to_save, $code );
+				   fclose( $file_to_save);
+$f =fopen($main,"w+");
+$d = <<<EOD
+#include<cstdlib>
+#include<unistd.h>
+#define system  <cstdlib>
+#define exec   <unistd.h>
+\n
+EOD;
+fwrite($f,$d);
+fclose($f);     
+				shell_exec("cat $c>>$main");
 				shell_exec( "chmod 777 $main" );
       			$output_file = fopen( "output.txt", "w+" );
 				shell_exec( "chmod 777 output.txt" );
@@ -32,28 +44,28 @@ function cpp_compiler(){
 				 * custom exception class for user friendly error messages
 				 */
 
-				function catch_fatal_error(){
-							$last_error = error_get_last();
-							if ( isset( $last_error['type'] ) ){
-										log_exception( new Exception() );
-						      }
-				}
+				// function catch_fatal_error(){
+				// 			$last_error = error_get_last();
+				// 			if ( isset( $last_error['type'] ) ){
+				// 						log_exception( new Exception() );
+				// 		      }
+				// }
 
-				function log_exception( Exception $e ){
+				// function log_exception( Exception $e ){
 				   
-					   if( isset( $e ) ){
-							       echo 'Fatal error occured ';
-						}
-						else{
-					      		echo "some Exception  occured ";
+				// 	   if( isset( $e ) ){
+				// 			       echo 'Fatal error occured ';
+				// 		}
+				// 		else{
+				// 	      		echo "some Exception  occured ";
 
-						}
+				// 		}
 
-				}
+				// }
 
-				set_error_handler( "catch_fatal_error" );
-				set_exception_handler( "log_exception" );
-				register_shutdown_function( "catch_fatal_error" );
+				// set_error_handler( "catch_fatal_error" );
+				// set_exception_handler( "log_exception" );
+				// register_shutdown_function( "catch_fatal_error" );
 
 				shell_exec( $command );
 				shell_exec( "chmod 777 a.out" );
@@ -74,23 +86,35 @@ function cpp_compiler(){
 
 
 						shell_exec( $run );   
-						$executionEndTime = microtime( true );
-						$seconds = $executionEndTime - $executionStartTime;
-						$seconds = $seconds;
+						//$executionEndTime = microtime( true );
+						//$seconds = $executionEndTime - $executionStartTime;
+						//$seconds = $seconds;
 						
-						echo '<div style="height:auto;width:100%;text-align:center;" id="tm">';
-						echo "Memory Uses :".number_format(memory_get_usage()/1024,2) . " kb <br>";
-						echo 'execution Time : '.number_format( $seconds,2 ).'s';
+						//echo '<div style="height:auto;width:100%;text-align:center;" id="tm">';
+						//echo "Memory Uses :".number_format(memory_get_usage()/1024,2) . " kb <br>";
+						//echo 'execution Time : '.number_format( $seconds,2 ).'s';
 
-                        echo '</div>';
+                       // echo '</div>';
 						
-						echo '<textarea id="out" onclick="myFunction()" readonly style="width:100%;">';
-						echo file_get_contents('output.txt');
-						echo '</textarea>';
+						//echo '<textarea id="out" onclick="myFunction()" readonly style="width:100%;">';
+						if(filesize('output.txt')<=134217728){
+
+                              echo file_get_contents('output.txt');
+                          }
+						else{
+						
+                            echo 'Memory limit exceeded !';
+						}
+						
+						// echo file_get_contents('output.txt');
+
+						// //echo '</textarea>';
+      //                    exec('rm output.txt');
+      //                    exec("rm input.txt");
 
 				}
 				else{
-					   	echo '<code style="width:100%;">'.trim( file_get_contents( 'error.txt' ) ).'</code>';
+					   	echo trim( file_get_contents( 'error.txt' ) );
 				   }
 		}
 }

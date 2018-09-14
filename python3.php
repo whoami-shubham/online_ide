@@ -5,7 +5,7 @@ header('Content-Type: text/html; charset=utf-8');
 # && isset( $_POST['checkbox'] )
 #
 #ini_set('memory_limit', '1M');
-function js_interpreter(){
+function py3_interpreter(){
 
 	if( isset( $_POST['code'] ) ){
 
@@ -17,7 +17,7 @@ function js_interpreter(){
 				   }
 				$main = "main.py";
 				$error_file = "error.txt";
-				$command = "python3 $main -w 2> ".$error_file;
+				$command = "python3 $main -w 2 > ".$error_file;
 				$run = "timeout 5s python3 $main";
 				$file_to_run = fopen($main, "w+");
 				fwrite( $file_to_run, $code );
@@ -33,28 +33,28 @@ function js_interpreter(){
 				 * custom exception class for user friendly error messages
 				 */
 
-				function catch_fatal_error(){
-							$last_error = error_get_last();
-							if ( isset( $last_error['type'] ) ){
-										log_exception( new Exception() );
-						      }
-				}
+				// function catch_fatal_error(){
+				// 			$last_error = error_get_last();
+				// 			if ( isset( $last_error['type'] ) ){
+				// 						log_exception( new Exception() );
+				// 		      }
+				// }
 
-				function log_exception( Exception $e ){
+				// function log_exception( Exception $e ){
 				   
-					   if( isset( $e ) ){
-							       echo 'Fatal error occured ';
-						}
-						else{
-					      		echo "some Exception  occured ";
+				// 	   if( isset( $e ) ){
+				// 			       echo 'Fatal error occured ';
+				// 		}
+				// 		else{
+				// 	      		echo "some Exception  occured ";
 
-						}
+				// 		}
 
-				}
+				// }
 
-				set_error_handler( "catch_fatal_error" );
-				set_exception_handler( "log_exception" );
-				register_shutdown_function( "catch_fatal_error" );
+				// set_error_handler( "catch_fatal_error" );
+				// set_exception_handler( "log_exception" );
+				// register_shutdown_function( "catch_fatal_error" );
 
 				shell_exec( $command );
 				shell_exec( "chmod 777 a.out" );
@@ -86,8 +86,14 @@ function js_interpreter(){
                         echo '</div>';
 						
 						echo '<textarea id="out" onclick="myFunction()" readonly style="width:100%;">';
-						echo file_get_contents('output.txt');
-						echo '</textarea>';
+                        try{
+
+						   echo file_get_contents('output.txt') ;
+					    }
+					    catch(Exception $e){
+					    	 die("Memory Limit Exceeded!");
+					    }
+					    echo '</textarea>';
 
 				}
 				else{
@@ -95,5 +101,5 @@ function js_interpreter(){
 				   }
 		}
 }
-js_interpreter();
+py3_interpreter();
 ?>
