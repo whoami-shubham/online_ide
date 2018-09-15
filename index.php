@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
       <head>
           <meta charset="utf-8">
@@ -106,131 +106,131 @@
                 </div>
             </div>
             <script>
-            var editor = ace.edit("editor");
-            document.getElementById("run").disabled=true;
-            editor.setValue("#Select A Language !!");
-            changefont("16px");
-            editor.setShowPrintMargin(false);
-            document.getElementById('form1').addEventListener('submit',on_click);
-            function changetheme(e){
-              if(e!==''){
-            // console.log(e);
-                editor.setTheme("ace/theme/"+e);
-              }
-            }
-            function changemode(e){
-            cut();
-            if(e==''){
-              document.getElementById("run").disabled = true;
-            }
-            else{
-              document.getElementById("run").disabled = false;
-            }
+//             var editor = ace.edit("editor");
+//             document.getElementById("run").disabled=true;
+//             editor.setValue("#Select A Language !!");
+//             changefont("16px");
+//             editor.setShowPrintMargin(false);
+//             document.getElementById('form1').addEventListener('submit',on_click);
+//             function changetheme(e){
+//               if(e!==''){
+//             // console.log(e);
+//                 editor.setTheme("ace/theme/"+e);
+//               }
+//             }
+//             function changemode(e){
+//             cut();
+//             if(e==''){
+//               document.getElementById("run").disabled = true;
+//             }
+//             else{
+//               document.getElementById("run").disabled = false;
+//             }
 
-            switch(e){
-            case 'javascript':
-            editor.setValue(
-            ` function foo(items) {
-            let x = "Write Your Code here ";
-              return x;
-            }
-            `)
-            editor.session.setMode("ace/mode/"+e);
-            break;
-            case 'cpp':
-            editor.setValue(
-            `#include <bits/stdc++.h>
-            using namespace std;
-            int main(void)
-            { 
-            // write your code here
-
-
-            return 0;
-            } `
-            )
-            editor.session.setMode("ace/mode/c_cpp");
-            break;
-
-            case 'c':
-            editor.setValue(
-            `#include <stdio.h>
-            int main(void)
-            {
-            // write your code here
-
-            return 0;
-            } `
-            )
-            editor.session.setMode("ace/mode/c_cpp");
-            break;
-            case 'python2':
-            editor.setValue("# write your code here");
-            editor.session.setMode("ace/mode/python");
-            break;
-            case 'python3':
-            editor.setValue("# write your code here");
-            editor.session.setMode("ace/mode/python");
-            break;
-
-            default:
-            editor.setValue("#Select A Language !!");
-            }
-            }
-            function log(){
-            console.log(editor.getValue());
-            }
+//             switch(e){
+//             case 'javascript':
+//             editor.setValue(
+//             ` function foo(items) {
+//             let x = "Write Your Code here ";
+//               return x;
+//             }
+//             `)
+//             editor.session.setMode("ace/mode/"+e);
+//             break;
+//             case 'cpp':
+//             editor.setValue(
+//             `#include <bits/stdc++.h>
+//             using namespace std;
+//             int main(void)
+//             { 
+//             // write your code here
 
 
-            function on_click(e){
-            e.preventDefault();
-            console.log(document.getElementById('loader').style.display);
-            document.getElementById('loader').style.display='block';
-            document.getElementById("run").disabled = true;
-            console.log(document.getElementById('loader').style.display);
-             window.scrollBy(0, 100); 
-            const c = editor.getValue();
-            let i = null;
-            const l = document.getElementById('mode').value;
-            if(l!="" && l!=null){
-              setTimeout( () => {
-                    if(document.getElementById('c_input').checked){
-                    i = document.getElementById('in').value;
-                    // console.log(i);
-                    // console.log(typeof i);
+//             return 0;
+//             } `
+//             )
+//             editor.session.setMode("ace/mode/c_cpp");
+//             break;
 
-                    }
-                    document.getElementById("run").disabled = true;
-                    let data = 'code='+encodeURIComponent(c)+'&'+'lang='+l;
-                    if(i){
-                    data = data + '&' +'in='+ i;
-                    }
-                    // console.log(data);
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('POST',l+'.php',true);
-                    xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded;charset=UTF-8');
-                    xhr.onload = function(){
-                    // console.log(this.responseText);
-                    //console.log(data);
-                    //console.log(xhr);
-                    document.getElementById('loader').style.display="none";
-                    console.log(document.getElementById('loader').style.display);
-                    parent = document.getElementById('output');
-                    document.getElementById('output').style.display="block";
-                    document.getElementById('oh').style.display="block";
-                    document.getElementById('output').innerHTML=this.responseText;
-                    document.getElementById("run").disabled = false;
-                     window.scrollBy(0, 400); 
-                    }
+//             case 'c':
+//             editor.setValue(
+//             `#include <stdio.h>
+//             int main(void)
+//             {
+//             // write your code here
+
+//             return 0;
+//             } `
+//             )
+//             editor.session.setMode("ace/mode/c_cpp");
+//             break;
+//             case 'python2':
+//             editor.setValue("# write your code here");
+//             editor.session.setMode("ace/mode/python");
+//             break;
+//             case 'python3':
+//             editor.setValue("# write your code here");
+//             editor.session.setMode("ace/mode/python");
+//             break;
+
+//             default:
+//             editor.setValue("#Select A Language !!");
+//             }
+//             }
+//             function log(){
+//             console.log(editor.getValue());
+//             }
+
+
+//             function on_click(e){
+//             e.preventDefault();
+//             console.log(document.getElementById('loader').style.display);
+//             document.getElementById('loader').style.display='block';
+//             document.getElementById("run").disabled = true;
+//             console.log(document.getElementById('loader').style.display);
+//              window.scrollBy(0, 100); 
+//             const c = editor.getValue();
+//             let i = null;
+//             const l = document.getElementById('mode').value;
+//             if(l!="" && l!=null){
+//               setTimeout( () => {
+//                     if(document.getElementById('c_input').checked){
+//                     i = document.getElementById('in').value;
+//                     // console.log(i);
+//                     // console.log(typeof i);
+
+//                     }
+//                     document.getElementById("run").disabled = true;
+//                     let data = 'code='+encodeURIComponent(c)+'&'+'lang='+l;
+//                     if(i){
+//                     data = data + '&' +'in='+ i;
+//                     }
+//                     // console.log(data);
+//                     let xhr = new XMLHttpRequest();
+//                     xhr.open('POST',l+'.php',true);
+//                     xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded;charset=UTF-8');
+//                     xhr.onload = function(){
+//                     // console.log(this.responseText);
+//                     //console.log(data);
+//                     //console.log(xhr);
+//                     document.getElementById('loader').style.display="none";
+//                     console.log(document.getElementById('loader').style.display);
+//                     parent = document.getElementById('output');
+//                     document.getElementById('output').style.display="block";
+//                     document.getElementById('oh').style.display="block";
+//                     document.getElementById('output').innerHTML=this.responseText;
+//                     document.getElementById("run").disabled = false;
+//                      window.scrollBy(0, 400); 
+//                     }
                     
-                    xhr.send(data); },3000);
-            }
-            else{
-                  document.getElementById('loader').style.display='none';
-                  document.getElementById("run").disabled = false;
+//                     xhr.send(data); },3000);
+//             }
+//             else{
+//                   document.getElementById('loader').style.display='none';
+//                   document.getElementById("run").disabled = false;
 
-            }
-            }
+//             }
+//             }
             //function myFunction() {
             // console.log('myFunction called !')
             // var elmnt = document.getElementById("out");
@@ -240,27 +240,27 @@
             // }
             // }
 
-            function cut(){
-            var o = document.getElementById("output");
-            var x = document.getElementById("oh");
-            o.style.display = "none";
-            x.style.display = "none";
-            }
-            function changefont(f){
-            //  console.log(f);
+//             function cut(){
+//             var o = document.getElementById("output");
+//             var x = document.getElementById("oh");
+//             o.style.display = "none";
+//             x.style.display = "none";
+//             }
+//             function changefont(f){
+//             //  console.log(f);
 
-            document.getElementById('editor').style.fontSize=f;
-            }
-            function onchecked(){
+//             document.getElementById('editor').style.fontSize=f;
+//             }
+//             function onchecked(){
 
-            const a = document.getElementById('c_input').checked;
-            if(a===true){
-                        document.getElementById('in').style.display="block";
-            }
-            else{
-                  document.getElementById('in').style.display="none";
-            }
-            }
+//             const a = document.getElementById('c_input').checked;
+//             if(a===true){
+//                         document.getElementById('in').style.display="block";
+//             }
+//             else{
+//                   document.getElementById('in').style.display="none";
+//             }
+//             }
             </script>
             </body>
             </html>
@@ -268,3 +268,4 @@
             <?php
 
             ?>
+ -->
