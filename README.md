@@ -9,7 +9,7 @@
     if you want to add any language that is not present in this code
     then you just need to install interpreter or compiler of that
     language and make new file for that and copy code from already
-    present any of file like c.php or cpp.php  and you have to only
+    present  file in this repo like c.php or cpp.php  and you have to only
     change compile command and run command and file extension inside 
      that file.
 
