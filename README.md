@@ -1,5 +1,5 @@
+![](https://img.shields.io/badge/Os-Linux-blue.svg)  ![](https://img.shields.io/badge/Tested%20on-Ubuntu-orange.svg) ![](https://img.shields.io/badge/libraries-Ace%20Bootstrap-brightgreen.svg)
 # online IDE
-<span> ![Linux](https://raw.githubusercontent.com/vorillaz/devicons/master/!PNG/linux.png) <span> ![php](https://raw.githubusercontent.com/vorillaz/devicons/master/!PNG/php.png) </span> </span><span style="color:yellow;"> ![Js](https://raw.githubusercontent.com/vorillaz/devicons/master/!PNG/javascript_1.png) </span>
 
 
     This IDE Would work in any linux distribution.Due to cool features
